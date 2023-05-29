@@ -1,0 +1,35 @@
+<div *ngIf="affiliates.length === 0; else table" class="alert alert-warning text-center">
+  No hay afiliados registrados o hubo un error al obtener los registros
+</div>
+
+<ng-template #table>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Id afiliado</th>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Correo Electrónico</th>
+        <th> Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let affiliate  of affiliates; let i = index">
+        <td> {{i + 1}}</td>
+        <td>
+          {{affiliate.id}}
+        </td>
+        <td>
+          {{affiliate.name}}
+        </td>
+        <td>{{affiliate.age}}</td>
+        <td>{{affiliate.email}}</td>
+        <td><a [routerLink]="[pathUpdate, affiliate.id]"><i class="bi bi-clock-history"></i></a> - <a [routerLink]="[pathDelete, affiliate.id]" class=""><i class="bi bi-trash "></i></a> </td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</ng-template>

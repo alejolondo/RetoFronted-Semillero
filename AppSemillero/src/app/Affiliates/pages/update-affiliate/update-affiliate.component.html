@@ -1,0 +1,43 @@
+<shared-header [title]="title"></shared-header>
+
+
+<form class="container" [formGroup]="affiliatesForm" (ngSubmit)="onSubmit()">
+  <div class="container d-flex" >
+    <div class="me-4">
+      <label for="" class="d-flex text-secondary fs-6">Nombre del afiliado</label>
+      <input type="tex"  formControlName="name" class=" border-top-0 border-end-0 border-start-0 border-bottom-2"><i class="bi bi-person-plus"></i>
+      <span *ngIf="affiliatesForm.controls['name'].getError('required') && affiliatesForm.controls['name'].touched" class="form-text text-danger">
+        Este campo es requerido
+       </span>
+    </div>
+    <div class="me-4">
+      <label for="" class="d-flex text-secondary fs-6">Edad</label>
+      <input type="number" formControlName="age" class=" border-top-0 border-end-0 border-start-0 border-bottom-2"><i class="bi bi-calendar-date"></i>
+      <span *ngIf="affiliatesForm.controls['age'].getError('required') && affiliatesForm.controls['age'].touched" class="form-text text-danger">
+        Este campo es requerido
+       </span>
+       <span *ngIf="affiliatesForm.controls['age'].getError('min') && affiliatesForm.controls['age'].touched" class="form-text text-danger">
+        Edad incorrecta
+       </span>
+    </div>
+    <div class="me-4">
+      <label for="" class="d-flex text-secondary fs-6">Email</label>
+      <input type="email" formControlName="email" class=" border-top-0 border-end-0 border-start-0 border-bottom-2"><i class="bi bi-envelope"></i>
+      <span *ngIf="affiliatesForm.controls['email'].getError('required') && affiliatesForm.controls['email'].touched" class="form-text text-danger">
+        Este campo es requerido
+       </span>
+       <span *ngIf="affiliatesForm.controls['email'].getError('email') && affiliatesForm.controls['email'].touched" class="form-text text-danger">
+        Ingresa un email válido
+       </span>
+    </div>
+</div>
+</form>
+
+<div class="container d-flex justify-content-end">
+  <button type="submit" class="btn btn-primary me-3" (click)="onSubmit()" >Actualizar</button>
+  <a class="btn btn-danger me-3" routerLink="/affiliates/all">Cancelar</a>
+</div>
+
+
+
+

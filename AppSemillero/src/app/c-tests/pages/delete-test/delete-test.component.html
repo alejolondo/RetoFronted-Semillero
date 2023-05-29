@@ -1,0 +1,14 @@
+<shared-header [title]="title"></shared-header>
+
+<div class="container d-flex justify-content-center mt-3">
+  <div class="card" style="width: 18rem;">
+
+    <div class="card-body">
+      <h5 class="card-title">{{test.name}}</h5>
+      <p class="card-text">{{test.description}}</p>
+      <button class="btn btn-primary me-3 " routerLink="/tests/all" >Regresar </button>
+
+      <button class="btn btn-danger ms-5  " (click)="onDelete()">Eliminar</button>
+    </div>
+  </div>
+</div>

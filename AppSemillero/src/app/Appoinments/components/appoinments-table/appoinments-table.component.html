@@ -1,0 +1,38 @@
+
+<div *ngIf="appoinments.length === 0; else table" class="alert alert-warning text-center">
+  No hay citas registradas
+</div>
+
+<ng-template #table>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Id Cita</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Id Test</th>
+        <th>Id Affiliado</th>
+        <th> Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let appoinment  of appoinments; let i = index">
+        <td> {{i + 1}}</td>
+        <td>
+          {{appoinment.id}}
+        </td>
+        <td>
+          {{appoinment.date}}
+        </td>
+        <td>{{appoinment.hour}}</td>
+        <td>{{appoinment.idTest}}</td>
+        <td>{{appoinment.idAffiliates}}</td>
+        <td><a [routerLink]="[pathUpdate, appoinment.id]"><i class="bi bi-clock-history"></i></a> - <a [routerLink]="[pathDelete, appoinment.id]" class=""><i class="bi bi-trash "></i></a> </td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</ng-template>

@@ -1,0 +1,101 @@
+<shared-header [title]="title"></shared-header>
+<div class="container d-flex">
+  <app-search-by-date (optionSelected)="searchAppointments($event)"></app-search-by-date>
+  <app-search-by-affiliate (optionSelected)="searchAffiliate($event)"></app-search-by-affiliate>
+</div>
+
+<div *ngIf="affiliatesHome.length === 0; else table" class="alert alert-warning text-center">
+  No se ha realizado ninguna consulta
+</div>
+<div class="wraper">
+
+
+<ng-template #table>
+
+<table mat-table [dataSource]="affiliatesHome" multiTemplateDataRows class="mat-elevation-z8">
+
+  <ng-container matColumnDef="expand">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element; let i = index" style="text-align: left">
+      <a> <mat-icon>expand_more</mat-icon>
+      </a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID Afiliado </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name" style="width: 232px;">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="age">
+    <th mat-header-cell *matHeaderCellDef> Edad </th>
+    <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="5">
+      <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+
+        <div class="example-container mat-elevation-z8" style="width: 800px">
+          <mat-table #table [dataSource]="appoinments" >
+
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef> Id Cita </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+              <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="hour">
+              <mat-header-cell *matHeaderCellDef> Hora </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.hour}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="idTest">
+              <mat-header-cell *matHeaderCellDef> Nombre de prueba </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.idTest}} </mat-cell>
+            </ng-container>
+
+
+           <ng-container matColumnDef="expand_second" >
+              <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+              <mat-cell *matCellDef="let element">  </mat-cell>
+            </ng-container>
+
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+
+      </div>
+    </td>
+  </ng-container>
+
+
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+    [class.example-expanded-row]="element.expanded" (click)="toggleRow(element, element.id)"
+    (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>
+</ng-template>
+</div>

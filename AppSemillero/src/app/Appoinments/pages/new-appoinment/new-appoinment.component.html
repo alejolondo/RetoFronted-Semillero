@@ -1,0 +1,55 @@
+<shared-header [title]="title"></shared-header>
+
+
+
+  <form class="container d-flex" *ngIf="tests.length && affiliates.length"  [formGroup]="appoinmentForm" (ngSubmit)="onSubmit()" >
+    <div class="me-4">
+      <label for="" class="d-flex text-secondary fs-6">Selecciona fecha</label>
+      <input type="date"  formControlName="date" class=" border-top-0 border-end-0 border-start-0 border-bottom-2"  >
+      <span *ngIf="appoinmentForm.controls['date'].getError('required') && appoinmentForm.controls['date'].touched" class="form-text text-danger">
+        Este campo es requerido
+       </span>
+    </div>
+    <div class="me-4">
+      <label for="" class="d-flex text-secondary fs-6">Selecciona hora</label>
+      <input type="time" formControlName="hour" class=" border-top-0 border-end-0 border-start-0 border-bottom-2">
+      <span *ngIf="appoinmentForm.controls['hour'].getError('required') && appoinmentForm.controls['hour'].touched" class="form-text text-danger">
+        Este campo es requerido
+       </span>
+    </div>
+    <div class="me-4">
+      <label for="" class="d-flex text-secondary fs-6">Prueba</label>
+      <select  formControlName="idTest"  class=" border-top-0 border-end-0 border-start-0 border-bottom-2" aria-label="Default select example">
+        <option   *ngFor="let test of tests" [value]="test.id">{{test.name}} </option>
+      </select>
+      <span *ngIf="appoinmentForm.controls['idTest'].getError('min') && appoinmentForm.controls['idTest'].touched" class="form-text text-danger">
+        Este campo es requerido
+       </span>
+    </div>
+    <div class="me-4">
+      <label for="" class="d-flex text-secondary fs-6">Afiliado</label>
+      <select formControlName="idAffiliates"  class=" border-top-0 border-end-0 border-start-0 border-bottom-2" aria-label="Default select example">
+
+        <option *ngFor="let affiliate of affiliates" [value]="affiliate.id">{{affiliate.name}}</option>
+      </select>
+      <span *ngIf="appoinmentForm.controls['idAffiliates'].getError('min') && appoinmentForm.controls['idAffiliates'].touched" class="form-text text-danger">
+        Este campo es requerido
+       </span>
+    </div>
+  </form>
+  <div class="container d-flex justify-content-end">
+    <button type="submit" class="btn btn-primary me-3" (click)="onSubmit()">Guardar</button>
+    <a class="btn btn-danger me-3" routerLink="/appoinments/all">Cancelar</a>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+

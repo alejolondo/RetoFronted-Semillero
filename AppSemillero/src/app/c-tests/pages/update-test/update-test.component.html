@@ -1,0 +1,28 @@
+<shared-header [title]="title"></shared-header>
+
+
+<form class="container" [formGroup]="testForm" (ngSubmit)="onSubmit()">
+  <div class="container d-flex" >
+    <div class="me-5">
+      <label for="" class="d-flex text-secondary fs-6">Nombre del test</label>
+      <input type="tex" formControlName="name" class=" border-top-0 border-end-0 border-start-0 border-bottom-2"><i class="bi bi-clipboard"></i>
+      <span *ngIf="testForm.controls['name'].getError('required') && testForm.controls['name'].touched" class="form-text text-danger">
+        Este campo es requerido
+       </span>
+    </div>
+    <div class="me-4">
+      <label for="" class="d-flex text-secondary fs-6">Descripción</label>
+      <input type="text" formControlName="description" class=" border-top-0 border-end-0 border-start-0 border-bottom-2"><i class="bi bi-card-text"></i>
+      <span *ngIf="testForm.controls['description'].getError('required') && testForm.controls['description'].touched" class="form-text text-danger">
+        Este campo es requerido
+       </span>
+    </div>
+</div>
+</form>
+
+    <div class="container d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary me-3" (click)="onSubmit()">Actualizar</button>
+      <a class="btn btn-danger me-3" routerLink="/tests/all">Cancelar</a>
+    </div>
+
+

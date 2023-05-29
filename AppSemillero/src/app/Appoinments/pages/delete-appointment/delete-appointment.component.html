@@ -1,0 +1,20 @@
+<shared-header [title]="title"></shared-header>
+
+<div class="container d-flex justify-content-center mt-3">
+  <div class="card" style="width: 18rem;">
+
+    <div class="card-body">
+      <h5 class="card-title"><i class="bi bi-calendar"></i> Cita: # {{appoinment.id}} </h5>
+       <h5 class="card-title"><Strong>Fecha: </Strong>{{appoinment.date}}</h5>
+      <p class="card-text"><Strong>Hora: </Strong>{{appoinment.hour}}</p>
+      <div class="d-flex">
+        <p class="card-text "><i class="bi bi-person-fill"></i><Strong> Id Afilidado: </Strong>{{appoinment.idAffiliates}}</p>
+        <p class="card-text ms-2 "><i class="bi bi-card-checklist"></i> <Strong> Id Prueba: </Strong>{{appoinment.idTest}}</p>
+      </div>
+      <button class="btn btn-primary me-3 " routerLink="/appoinments/all" >Regresar </button>
+
+      <button class="btn btn-danger ms-5  " (click)="onDelete()">Eliminar</button>
+    </div>
+  </div>
+</div>
+

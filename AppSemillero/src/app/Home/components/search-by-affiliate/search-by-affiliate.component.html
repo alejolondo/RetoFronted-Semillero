@@ -1,0 +1,17 @@
+<div class="container d-flex" >
+  <div class="me-4">
+    <label for="" class="d-flex text-secondary fs-6">Id Afiliado</label>
+    <select  class=" border-top-0 border-end-0 border-start-0 border-bottom-2" aria-label="Default select example"
+    (change)="handleSelectChange()"
+    >
+      <option value=""> Seleccione un afiliado</option>
+      <option *ngFor="let affiliate of affiliates" [value]="affiliate.id">{{affiliate.name}}</option>
+    </select>
+
+  
+    <button class="btn btn-primary ms-2" >  <i class="bi bi-search"></i></button>
+  </div>
+ </div>
+
+
+
